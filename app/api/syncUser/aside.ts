@@ -32,7 +32,7 @@ export async function createUser(ref: string, user: AuthenticatedUser) {
   console.log("Creating new authenticated user"); // Log creating new user
   const AuthenticatedUser = await db.insert(users).values({
     id: user.id,
-    role: "User", // Assuming "User" is a valid role in your UserRole enum
+    // role: "User", // Assuming "User" is a valid role in your UserRole enum
     username: user.email.split("@")[0],
     fullName: user.fullName || "",
     imageUrl: user.image,
