@@ -6,3 +6,4 @@ export type AuthenticatedUser = {
   fullName: string;
   image: string;
 };
+//
