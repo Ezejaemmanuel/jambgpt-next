@@ -12,10 +12,10 @@ export async function POST(
   console.log("POST function started");
   const { session } = await getUserAuth();
   const { searchParams } = new URL(request.url);
-  const ref = searchParams.get("ref") || "noRef";
-  // if (!ref) {
-  //   return NextResponse.json({ error: "No Ref Found" }, { status: 404 });
-  // }
+  const ref = searchParams.get("ref");
+  if (!ref) {
+    return NextResponse.json({ error: "No Ref Found" }, { status: 404 });
+  }
   console.log(`Ref: ${ref}`);
 
   try {
