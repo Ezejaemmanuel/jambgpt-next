@@ -1,5 +1,5 @@
 {
-  "id": "5ca2645c-24a3-4ff8-9526-eda61b29e35c",
+  "id": "45943e00-4431-49fb-9892-73932b6b623d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -19,8 +19,7 @@
           "type": "UserRole",
           "typeSchema": "public",
           "primaryKey": false,
-          "notNull": true,
-          "default": "'User'"
+          "notNull": true
         },
         "firstName": {
           "name": "firstName",
@@ -93,8 +92,8 @@
       "name": "UserRole",
       "schema": "public",
       "values": [
-        "User",
-        "Admin"
+        "USER",
+        "ADMIN"
       ]
     }
   },

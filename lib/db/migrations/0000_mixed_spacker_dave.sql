@@ -1,12 +1,12 @@
 DO $$ BEGIN
- CREATE TYPE "public"."UserRole" AS ENUM('User', 'Admin');
+ CREATE TYPE "public"."UserRole" AS ENUM('USER', 'ADMIN');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "User" (
 	"id" text PRIMARY KEY NOT NULL,
-	"role" "UserRole" DEFAULT 'User' NOT NULL,
+	"role" "UserRole" NOT NULL,
 	"firstName" text,
 	"username" text,
 	"fullName" text,

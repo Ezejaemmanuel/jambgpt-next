@@ -8,17 +8,17 @@ import {
 import { sql } from "drizzle-orm";
 import { InferSelectModel } from "drizzle-orm";
 
-export const UserRole = pgEnum("UserRole", ["User", "Admin"]);
+export const UserRole = pgEnum("UserRole", ["USER", "ADMIN"]);
 export enum UserRoleEnum {
-  User = "User",
-  Admin = "Admin",
+  USER = "USER",
+  ADMIN = "ADMIN",
 }
 
 export const users = pgTable(
   "User",
   {
     id: text("id").primaryKey().notNull(),
-    role: UserRole("role").notNull().default(UserRole.enumValues[0]),
+    role: UserRole("role").notNull(),
     firstName: text("firstName"),
     username: text("username"),
     fullName: text("fullName"),

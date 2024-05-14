@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getUserAuth } from "@/lib/auth/utils";
 import { sql } from "drizzle-orm";
-import { users } from "@/lib/db/schema/schema";
+import { UserRoleEnum, users } from "@/lib/db/schema/schema";
 import { db } from "@/lib/db";
 import { eq } from "drizzle-orm";
 import { authenticateUser } from "@/lib/auth/authUser";
@@ -32,7 +32,7 @@ export async function createUser(ref: string, user: AuthenticatedUser) {
   console.log("Creating new authenticated user"); // Log creating new user
   const AuthenticatedUser = await db.insert(users).values({
     id: user.id,
-    // role: "User", // Assuming "User" is a valid role in your UserRole enum
+    role: UserRoleEnum.USER,
     username: user.email.split("@")[0],
     fullName: user.fullName || "",
     imageUrl: user.image,
