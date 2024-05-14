@@ -11,6 +11,7 @@ export async function POST(
 ): Promise<NextResponse> {
   console.log("POST function started");
   const { session } = await getUserAuth();
+  console.log("this is the uuser session oooo  000000", session);
   const { searchParams } = new URL(request.url);
   const ref = searchParams.get("ref") || "noRef";
   // if (!ref) {
@@ -19,14 +20,14 @@ export async function POST(
   console.log(`Ref: ${ref}`);
 
   try {
-    console.log("Attempting to authenticate user");
+    // console.log("Attempting to authenticate user");
     console.log(`Authenticated user ID: ${session}`);
     if (!session) {
       console.log("No user ID found, redirecting to sign-in");
       throw new Error("No user ID found, redirecting to sign-in page.");
     }
-    console.log("Fetching user from database");
-    console.log("Checking if user already exists"); // Log checking for existing user
+    // console.log("Fetching user from database");
+    // console.log("Checking if user already exists"); // Log checking for existing user
     const existingUser = await db
       .selectDistinct()
       .from(users)
@@ -37,11 +38,11 @@ export async function POST(
       return NextResponse.json(existingUser[0], { status: 200 });
     }
 
-    console.log("Creating user through webhook");
+    // console.log("Creating user through webhook");
     const authenticatedUser = await authenticateUser(request);
     const fromSyncingUser = await createUser(ref, authenticatedUser);
     console.log(`User created: ${JSON.stringify(fromSyncingUser)}`);
-    console.log("Returning response with status 200");
+    // console.log("Returning response with status 200");
 
     return NextResponse.json(fromSyncingUser, { status: 200 });
   } catch (error: unknown) {
