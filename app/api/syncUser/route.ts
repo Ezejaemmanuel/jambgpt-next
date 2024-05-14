@@ -1,4 +1,4 @@
-import { getUserAuth } from "@/lib/auth/utils";
+import { getUserAuth, getUserId } from "@/lib/auth/utils";
 import { NextRequest, NextResponse } from "next/server";
 import { createUser } from "./aside";
 import { db } from "@/lib/db";
@@ -10,8 +10,8 @@ export async function POST(
   res: NextResponse
 ): Promise<NextResponse> {
   console.log("POST function started");
-  const { session } = await getUserAuth();
-  console.log("this is the uuser session oooo  000000", session);
+  const userId = getUserId();
+  // console.log("this is the uuser session oooo  000000", session);
   const { searchParams } = new URL(request.url);
   const ref = searchParams.get("ref") || "noRef";
   // if (!ref) {
@@ -22,8 +22,8 @@ export async function POST(
 
   try {
     // console.log("Attempting to authenticate user");
-    console.log(`Authenticated user ID: ${session}`);
-    if (!session) {
+    console.log(`Authenticated user ID: ${userId}`);
+    if (!userId) {
       console.log("No user ID found, redirecting to sign-in");
       throw new Error("No user ID found, redirecting to sign-in page.");
     }
@@ -32,7 +32,7 @@ export async function POST(
     const existingUser = await db
       .selectDistinct()
       .from(users)
-      .where(eq(users.id, session.user.id));
+      .where(eq(users.id, userId));
 
     if (existingUser && existingUser.length > 0) {
       console.log("User already exists, returning existing user"); // Log returning existing user
@@ -40,8 +40,8 @@ export async function POST(
     }
 
     // console.log("Creating user through webhook");
-    const authenticatedUser = await authenticateUser(request);
-    const fromSyncingUser = await createUser(ref, authenticatedUser);
+    // const authenticatedUser = await authenticateUser(request);//hthis is the one that does the sessio stuff by accepting the request and filtering the user details but it seems it can be done with normally nextjs ones
+    const fromSyncingUser = await createUser(ref);
     console.log(`User created: ${JSON.stringify(fromSyncingUser)}`);
     // console.log("Returning response with status 200");
 

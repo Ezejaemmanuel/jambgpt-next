@@ -32,7 +32,6 @@ export const users = pgTable(
       .default(sql`now()`),
   },
   (users) => ({
-    usernameIndex: uniqueIndex("User_username_key").on(users.username),
     emailIndex: uniqueIndex("User_email_key").on(users.email),
   })
 );
