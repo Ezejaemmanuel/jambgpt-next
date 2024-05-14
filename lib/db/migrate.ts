@@ -7,10 +7,7 @@ const runMigrate = async () => {
   //   throw new Error("DATABASE_URL is not defined");
   // }
 
-  const connection = postgres(
-    "postgres://postgres.ldybjbywqunzgbqdxlnn:xNCJmYwl4VAqmpUP@aws-0-eu-central-1.pooler.supabase.com:5432/postgres",
-    { max: 1 }
-  );
+  const connection = postgres(process.env.DATABASE_URL!, { max: 1 });
 
   const db = drizzle(connection);
 
