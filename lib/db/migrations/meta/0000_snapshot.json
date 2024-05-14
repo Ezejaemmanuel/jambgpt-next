@@ -1,5 +1,5 @@
 {
-  "id": "45943e00-4431-49fb-9892-73932b6b623d",
+  "id": "28b6fc3a-02de-4572-9752-49956d892e7e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -67,13 +67,6 @@
         }
       },
       "indexes": {
-        "User_username_key": {
-          "name": "User_username_key",
-          "columns": [
-            "username"
-          ],
-          "isUnique": true
-        },
         "User_email_key": {
           "name": "User_email_key",
           "columns": [

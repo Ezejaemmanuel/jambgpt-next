@@ -16,5 +16,4 @@ CREATE TABLE IF NOT EXISTS "User" (
 	"updatedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX IF NOT EXISTS "User_username_key" ON "User" ("username");--> statement-breakpoint
 CREATE UNIQUE INDEX IF NOT EXISTS "User_email_key" ON "User" ("email");
