@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getUserAuth } from "@/lib/auth/utils";
 import { sql } from "drizzle-orm";
-import { UserRoleEnum, users } from "@/lib/db/schema/schema";
+import { RoleEnum, users } from "@/lib/db/schema/schema";
 import { db } from "@/lib/db";
 import { eq } from "drizzle-orm";
 import { authenticateUser } from "@/lib/auth/authUser";
